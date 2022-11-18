@@ -94,28 +94,24 @@ cp cifar-10-batches-bin/test_batch.bin .
 rm -rf cifar-10-batches-bin/
 
 #---------------------------DRIVERS---------------------------
-git clone https://github.com/STMicroelectronics/STM32CubeF7
-cd STM32CubeF7
-git checkout ${STM_CUBE_SHA}
-git am ../patches/0001-Drivers-patch.patch
-cd ..
+mbed add https://os.mbed.com/teams/ST/code/BSP_DISCO_H747I/
 
 
-# Copy drivers from STM32CubeF7 to separate folder
+# Copy drivers from BSP_DISCO_H747I to separate folder
 mkdir -p BSP
 mkdir -p BSP/Drivers
 mkdir -p BSP/Drivers/BSP
 mkdir -p BSP/Utilities
 mkdir -p BSP/Drivers/BSP/Components
-cp -r STM32CubeF7/Drivers/BSP/STM32746G-Discovery BSP/Drivers/BSP
-cp -r STM32CubeF7/Drivers/BSP/Components/Common BSP/Drivers/BSP/Components
-cp -r STM32CubeF7/Drivers/BSP/Components/ft5336 BSP/Drivers/BSP/Components
-cp -r STM32CubeF7/Drivers/BSP/Components/n25q128a BSP/Drivers/BSP/Components
-cp -r STM32CubeF7/Drivers/BSP/Components/ov9655 BSP/Drivers/BSP/Components
-cp -r STM32CubeF7/Drivers/BSP/Components/rk043fn48h BSP/Drivers/BSP/Components
-cp -r STM32CubeF7/Drivers/BSP/Components/wm8994 BSP/Drivers/BSP/Components
-cp -r STM32CubeF7/Utilities/Fonts BSP/Utilities
-rm -rf STM32CubeF7/
+cp -r BSP_DISCO_H747I/STM32H747I-Discovery BSP/Drivers/BSP
+cp -r BSP_DISCO_H747I/Components/Common BSP/Drivers/BSP/Components
+cp -r BSP_DISCO_H747I/Components/ft6x06 BSP/Drivers/BSP/Components
+cp -r BSP_DISCO_H747I/Components/mt25tl01g BSP/Drivers/BSP/Components
+cp -r BSP_DISCO_H747I/Components/ov9655 BSP/Drivers/BSP/Components
+cp -r BSP_DISCO_H747I/Components/otm8009a BSP/Drivers/BSP/Components
+cp -r BSP_DISCO_H747I/Components/wm8994 BSP/Drivers/BSP/Components
+cp -r BSP_DISCO_H747I/Utilities/Fonts BSP/Utilities
+rm -rf BSP_DISCO_H747I/
 
 
 #---------------------------CMAKE-----------------------------
@@ -123,6 +119,6 @@ rm -rf STM32CubeF7/
 ./generate_cmake_files.sh BSP
 
 #---------------------------MBED------------------------------
-mbed-tools deploy
+mbed deploy
 
 
