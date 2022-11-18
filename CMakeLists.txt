@@ -30,7 +30,6 @@ add_executable("${PROJECT_NAME}" "")
 
 add_subdirectory("tensorflow")
 add_subdirectory(${MBED_PATH})
-add_subdirectory("BSP")
 add_subdirectory("image_recognition")
 
 mbed_configure_app_target(${PROJECT_NAME})

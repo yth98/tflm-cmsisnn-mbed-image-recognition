@@ -20,18 +20,6 @@ cmake_minimum_required(VERSION 3.21.0)
 
  target_sources(${PROJECT_NAME}
    PUBLIC
-     stm32f746_discovery/display_util.cc
-     stm32f746_discovery/image_provider.cc
-     stm32f746_discovery/image_util.cc
-)
-
- target_include_directories(${PROJECT_NAME}
-   PUBLIC
-     stm32f746_discovery
-)
-
- target_sources(${PROJECT_NAME}
-   PUBLIC
      image_recognition_model/image_recognition_model.cc
 )
 

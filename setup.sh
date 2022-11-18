@@ -97,28 +97,11 @@ rm -rf cifar-10-batches-bin/
 mbed add https://os.mbed.com/teams/ST/code/BSP_DISCO_H747I/
 
 
-# Copy drivers from BSP_DISCO_H747I to separate folder
-mkdir -p BSP
-mkdir -p BSP/Drivers
-mkdir -p BSP/Drivers/BSP
-mkdir -p BSP/Utilities
-mkdir -p BSP/Drivers/BSP/Components
-cp -r BSP_DISCO_H747I/STM32H747I-Discovery BSP/Drivers/BSP
-cp -r BSP_DISCO_H747I/Components/Common BSP/Drivers/BSP/Components
-cp -r BSP_DISCO_H747I/Components/ft6x06 BSP/Drivers/BSP/Components
-cp -r BSP_DISCO_H747I/Components/mt25tl01g BSP/Drivers/BSP/Components
-cp -r BSP_DISCO_H747I/Components/ov9655 BSP/Drivers/BSP/Components
-cp -r BSP_DISCO_H747I/Components/otm8009a BSP/Drivers/BSP/Components
-cp -r BSP_DISCO_H747I/Components/wm8994 BSP/Drivers/BSP/Components
-cp -r BSP_DISCO_H747I/Utilities/Fonts BSP/Utilities
-rm -rf BSP_DISCO_H747I/
-
-
 #---------------------------CMAKE-----------------------------
 ./generate_cmake_files.sh tensorflow
-./generate_cmake_files.sh BSP
 
 #---------------------------MBED------------------------------
 mbed deploy
+rm -rf BSP_DISCO_H747I/
 
 
