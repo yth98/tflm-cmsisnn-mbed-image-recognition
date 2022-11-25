@@ -1,0 +1,32 @@
+diff --git a/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_STM32H747xI_CM7/TOOLCHAIN_GCC_ARM/STM32H747xI_CM7.ld b/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_STM32H747xI_CM7/TOOLCHAIN_GCC_ARM/STM32H747xI_CM7.ld
+index 68280f4..3b68931 100644
+--- a/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_STM32H747xI_CM7/TOOLCHAIN_GCC_ARM/STM32H747xI_CM7.ld
++++ b/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_STM32H747xI_CM7/TOOLCHAIN_GCC_ARM/STM32H747xI_CM7.ld
+@@ -145,7 +145,6 @@ SECTIONS
+         KEEP(*(.fini_array))
+         PROVIDE_HIDDEN (__fini_array_end = .);
+ 
+-        KEEP(*(.jcr*))
+         . = ALIGN(8);
+         /* All data end */
+         __data_end__ = .;
+@@ -153,19 +152,6 @@ SECTIONS
+ 
+     } > RAM
+ 
+-    /* Uninitialized data section
+-     * This region is not initialized by the C/C++ library and can be used to
+-     * store state across soft reboots. */
+-    .uninitialized (NOLOAD):
+-    {
+-        . = ALIGN(32);
+-        __uninitialized_start = .;
+-        *(.uninitialized)
+-        KEEP(*(.keep.uninitialized))
+-        . = ALIGN(32);
+-        __uninitialized_end = .;
+-    } > RAM
+-
+     .bss :
+     {
+         . = ALIGN(8);

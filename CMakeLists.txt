@@ -45,15 +45,9 @@ target_link_libraries(${PROJECT_NAME}
   mbed-baremetal
 )
 
-if("${MAINFILE}" STREQUAL "test")
-  set(mainfile test.cpp)
-else()
-  set(mainfile main.cpp)
-endif()
-
 target_sources(${PROJECT_NAME}
     PUBLIC
-        image_recognition/${mainfile}
+        image_recognition/test.cpp
 )
 
 mbed_set_post_build(${PROJECT_NAME})

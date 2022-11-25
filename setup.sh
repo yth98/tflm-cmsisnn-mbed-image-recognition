@@ -102,6 +102,7 @@ mbed add https://os.mbed.com/teams/ST/code/BSP_DISCO_H747I/
 
 #---------------------------MBED------------------------------
 mbed deploy
+patch -p1 < patches/0001-linker.patch
 rm -rf BSP_DISCO_H747I/
 
 
