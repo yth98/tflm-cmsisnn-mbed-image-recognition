@@ -41,8 +41,7 @@ BYTES_OFFSET=$(( OFFSET * 153650 ))
 xxd -s $BYTES_OFFSET -l 153650 -i test_batch.bin image_recognition/50_cifar_images.h
 sed -i -E "s/unsigned char/const unsigned char/g" image_recognition/50_cifar_images.h
 mbedtools configure -m $TARGET -t $TOOLCHAIN -o cmake_build/$TARGET/release/$TOOLCHAIN/
-cmake -S . -B cmake_build/$TARGET/release/$TOOLCHAIN -DCMAKE_BUILD_TYPE=RELEASE -DMAINFILE=test -GNinja \
-    -DMBED_PRINTF_LIB=minimal-printf
+cmake -S . -B cmake_build/$TARGET/release/$TOOLCHAIN -DCMAKE_BUILD_TYPE=RELEASE -GNinja
 ninja -C cmake_build/$TARGET/release/$TOOLCHAIN
 
 

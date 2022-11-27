@@ -23,8 +23,6 @@
 
 #---------------------Configuration variables------------------------
 TFLM_SHA="22eb58f5c4a8856f6aa5d96c6afa45e6c4ba0e45"
-STM_CUBE_SHA="c7c5ec99c7482ea8bcdbf0a869c930af4547088f"
-CMSIS=true
 
 #---------------------------TFLM------------------------------
 git clone https://github.com/tensorflow/tflite-micro
@@ -38,9 +36,6 @@ make -f tensorflow/lite/micro/tools/make/Makefile third_party_downloads
 
 # Returns all necessary header and source files
 OPTIONS="OPTIMIZED_KERNEL_DIR=cmsis_nn"
-if [ "$CMSIS" = false ] ; then
-  OPTIONS=""
-fi
 HEADERS=$(make -f tensorflow/lite/micro/tools/make/Makefile $OPTIONS list_library_headers)
 SOURCES=$(make -f tensorflow/lite/micro/tools/make/Makefile $OPTIONS list_library_sources)
 TP_HEADERS=$(make -f tensorflow/lite/micro/tools/make/Makefile $OPTIONS list_third_party_headers)
@@ -93,16 +88,11 @@ rm cifar-10-binary.tar.gz
 cp cifar-10-batches-bin/test_batch.bin .
 rm -rf cifar-10-batches-bin/
 
-#---------------------------DRIVERS---------------------------
-mbed add https://os.mbed.com/teams/ST/code/BSP_DISCO_H747I/
-
-
 #---------------------------CMAKE-----------------------------
 ./generate_cmake_files.sh tensorflow
 
 #---------------------------MBED------------------------------
-mbed deploy
+mbedtools deploy
 patch -p1 < patches/0001-linker.patch
-rm -rf BSP_DISCO_H747I/
 
 

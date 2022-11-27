@@ -2,7 +2,7 @@
     "requires": ["bare-metal"]
     ,"target_overrides": {
         "*": {
-          "target.printf_lib": "std"
+          "target.printf_lib": "minimal-printf"
         }
       }
     ,"config": {
@@ -11,7 +11,7 @@
   }
     }
     ,"macros": [
-        "DISCO_F746NG",
+        "DISCO_H747I",
         "TF_LITE_DISABLE_X86_NEON",
         "TF_LITE_STATIC_MEMORY",
         "CMSIS_NN"
