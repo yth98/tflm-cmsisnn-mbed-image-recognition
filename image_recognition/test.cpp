@@ -29,7 +29,7 @@
 #include "image_recognition/image_dims.h"
 
 //Exact size is 88 kB but added 2 kB for margin.
-constexpr int tensor_arena_size = 90 * 1024;
+constexpr int tensor_arena_size = 180 * 1024;
 static uint8_t tensor_arena[tensor_arena_size];
 
 int main(int argc, char** argv) {
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
   TfLiteTensor* input = interpreter.input(0);
 
   int num_correct = 0;
-  int num_images = 50;
+  int num_images = 100;
   int32_t ticks_count;
   tflite::InitTimer();
 
@@ -110,6 +110,6 @@ int main(int argc, char** argv) {
       printf("===========================================\n");
     }
 
-    printf("Predicted %d correct out of 50\nAccuracy = %.2f\n", num_correct, num_correct / 50.0);
+    printf("Predicted %d correct out of 100\nAccuracy = %.2f\n", num_correct, num_correct / 100.0);
 }
 
