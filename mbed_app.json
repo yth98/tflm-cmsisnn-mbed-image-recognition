@@ -2,16 +2,53 @@
     "requires": ["bare-metal"]
     ,"target_overrides": {
         "*": {
-          "target.printf_lib": "minimal-printf"
+            "target.c_lib": "small",
+            "target.printf_lib": "minimal-printf",
+            "target.components_remove": [
+                "FLASHIAP",
+                "QSPIF"
+            ]
+            ,"target.device_has_remove": [
+                "LPTICKER",
+                "RTC",
+                "ANALOGIN",
+                "I2C",
+                "I2CSLAVE",
+                "I2C_ASYNCH",
+                "INTERRUPTIN",
+                "PORTIN",
+                "PORTINOUT",
+                "PORTOUT",
+                "PWMOUT",
+                "SERIAL_FC",
+                "SLEEP",
+                "SPI",
+                "SPISLAVE",
+                "SPI_ASYNCH",
+                "WATCHDOG",
+                "RESET_REASON",
+                "ANALOGOUT",
+                "CAN",
+                "CRC",
+                "TRNG",
+                "FLASH",
+                "QSPI"
+            ]
+            ,"platform.stdio-convert-newlines": true,
+            "platform.stdio-convert-tty-newlines": true,
+            "platform.stdio-minimal-console-only": true,
+            "platform.minimal-printf-enable-64-bit": false,
+            "platform.minimal-printf-enable-floating-point": true
         }
       }
     ,"config": {
-  "main-stack-size": {
+        "main-stack-size": {
             "value": 65536
-  }
+        }
     }
     ,"macros": [
         "DISCO_H747I",
+        "MBED_FAULT_HANDLER_DISABLED",
         "TF_LITE_DISABLE_X86_NEON",
         "TF_LITE_STATIC_MEMORY",
         "CMSIS_NN"
