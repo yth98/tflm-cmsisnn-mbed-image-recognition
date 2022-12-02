@@ -1,0 +1,18 @@
+diff --git a/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_DISCO_H747I/PinNames.h b/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_DISCO_H747I/PinNames.h
+index ae90154..2872db3 100644
+--- a/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_DISCO_H747I/PinNames.h
++++ b/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_DISCO_H747I/PinNames.h
+@@ -490,13 +490,6 @@ typedef enum {
+     NC = (int)0xFFFFFFFF
+ } PinName;
+ 
+-// Standardized LED and button names
+-#define LED1     PI_12  // LED1
+-#define LED2     PI_13  // LED2
+-#define LED3     PI_14  // LED3
+-#define LED4     PI_15  // LED4
+-#define BUTTON1  PC_13  // B2 [Wakeup Button]
+-
+ #ifdef __cplusplus
+ }
+ #endif

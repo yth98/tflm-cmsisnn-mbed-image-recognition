@@ -93,6 +93,7 @@ rm -rf cifar-10-batches-bin/
 
 #---------------------------MBED------------------------------
 mbedtools deploy
+patch -p1 < patches/0001-led.patch
 patch -p1 < patches/0001-linker.patch
 
 
