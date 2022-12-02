@@ -20,7 +20,6 @@
 #include "image_recognition/50_cifar_images.h"
 #include "image_recognition/image_recognition_model.h"
 #include "image_recognition/util.h"
-#include "tensorflow/lite/micro/all_ops_resolver.h"
 #include "tensorflow/lite/micro/micro_error_reporter.h"
 #include "tensorflow/lite/micro/micro_interpreter.h"
 #include "tensorflow/lite/micro/micro_mutable_op_resolver.h"
@@ -30,7 +29,8 @@
 
 //Exact size is 88 kB but added 2 kB for margin.
 constexpr int tensor_arena_size = 180 * 1024;
-static uint8_t tensor_arena[tensor_arena_size];
+__attribute__ ((section (".bss")))
+alignas(16) static uint8_t tensor_arena[tensor_arena_size];
 
 int main(int argc, char** argv) {
   tflite::MicroErrorReporter micro_error_reporter;
@@ -77,7 +77,6 @@ int main(int argc, char** argv) {
       printf("-------------------------------------------\n");
 
       memset(input->data.uint8, 0, input->bytes);
-      memset(input->data.int8, 0, input->bytes);
 
       uint8_t correct_label = 0;
       correct_label =
