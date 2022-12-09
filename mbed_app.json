@@ -34,7 +34,8 @@
                 "FLASH",
                 "QSPI"
             ]
-            ,"platform.stdio-convert-newlines": true,
+            ,"target.mbed_rom_size": "0x200000",
+            "platform.stdio-convert-newlines": true,
             "platform.stdio-convert-tty-newlines": true,
             "platform.stdio-minimal-console-only": true,
             "platform.minimal-printf-enable-64-bit": false,
