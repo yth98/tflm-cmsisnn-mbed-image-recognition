@@ -28,8 +28,8 @@
 #include "image_recognition/image_dims.h"
 
 //Exact size is 88 kB but added 2 kB for margin.
-constexpr int tensor_arena_size = 180 * 1024;
-__attribute__ ((section (".bss")))
+constexpr int tensor_arena_size = 96 * 1024;
+__attribute__ ((section (".tcm.bss")))
 alignas(16) static uint8_t tensor_arena[tensor_arena_size];
 
 int main(int argc, char** argv) {
@@ -45,17 +45,14 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  tflite::MicroMutableOpResolver<10> micro_op_resolver;
+  tflite::MicroMutableOpResolver<7> micro_op_resolver;
 
   micro_op_resolver.AddConv2D();
-  micro_op_resolver.AddStridedSlice();
-  micro_op_resolver.AddMul();
+  micro_op_resolver.AddDepthwiseConv2D();
   micro_op_resolver.AddAdd();
-  micro_op_resolver.AddRelu6();
+  micro_op_resolver.AddRelu();
   micro_op_resolver.AddPad();
-  micro_op_resolver.AddAveragePool2D();
-  micro_op_resolver.AddReshape();
-  micro_op_resolver.AddMaxPool2D();
+  micro_op_resolver.AddMean();
   micro_op_resolver.AddFullyConnected();
    
   tflite::MicroInterpreter interpreter(model, micro_op_resolver, tensor_arena,

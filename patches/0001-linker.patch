@@ -1,8 +1,26 @@
 diff --git a/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_STM32H747xI_CM7/TOOLCHAIN_GCC_ARM/STM32H747xI_CM7.ld b/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_STM32H747xI_CM7/TOOLCHAIN_GCC_ARM/STM32H747xI_CM7.ld
-index 68280f4..3b68931 100644
+index 68280f4..414a952 100644
 --- a/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_STM32H747xI_CM7/TOOLCHAIN_GCC_ARM/STM32H747xI_CM7.ld
 +++ b/mbed-os/targets/TARGET_STM/TARGET_STM32H7/TARGET_STM32H747xI/TARGET_STM32H747xI_CM7/TOOLCHAIN_GCC_ARM/STM32H747xI_CM7.ld
-@@ -145,7 +145,6 @@ SECTIONS
+@@ -76,6 +76,17 @@ ENTRY(Reset_Handler)
+ 
+ SECTIONS
+ {
++    .tcm.text :
++    {
++        *(.tcm.text*)
++    } > ITCMRAM
++
++    .tcm.bss (NOLOAD) :
++    {
++        . = ALIGN(8);
++        *(.tcm.bss*)
++    } > DTCMRAM
++
+     .text :
+     {
+         KEEP(*(.isr_vector))
+@@ -145,7 +156,6 @@ SECTIONS
          KEEP(*(.fini_array))
          PROVIDE_HIDDEN (__fini_array_end = .);
  
@@ -10,7 +28,7 @@ index 68280f4..3b68931 100644
          . = ALIGN(8);
          /* All data end */
          __data_end__ = .;
-@@ -153,19 +152,6 @@ SECTIONS
+@@ -153,19 +163,6 @@ SECTIONS
  
      } > RAM
  

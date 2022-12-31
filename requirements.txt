@@ -4,3 +4,20 @@ intelhex==2.3.0
 mbed-tools==7.27.0
 prettytable==2.2.0
 wheel==0.37.0
+--extra-index-url https://download.pytorch.org/whl/torch_stable.html
+torch==1.13.0+cu117
+torchvision==0.14.0+cu117
+tensorflow==2.11.0
+tensorflow-gpu==2.11.0
+tensorflow_probability==0.17.0
+pybind11==2.10.1
+onnx==1.12.0
+onnxruntime==1.13.1
+onnxruntime-extensions==0.4.2
+onnxsim==0.4.10
+--extra-index-url https://developer.download.nvidia.com/compute/redist
+onnx_graphsurgeon
+simple-onnx-processing-tools==1.1.3
+jupyterlab
+ipywidgets
+matplotlib
